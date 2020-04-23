@@ -9,18 +9,6 @@ lint: |
   ansible-lint
   flake8
 platforms:
-  # Amazon Linux does not appear to offer Xfce
-  # - name: amazonlinux2
-  #   image: amazonlinux:2
-  - name: debian9
-    image: debian:stretch-slim
-    dockerfile: Dockerfile_debian_9.j2
-  - name: debian10
-    image: debian:buster-slim
-  - name: debian11
-    image: debian:bullseye-slim
-  - name: kali
-    image: kalilinux/kali-rolling
   - name: fedora29
     image: fedora:29
   # Ansible currently insists on installing python2-dnf, which does
@@ -30,10 +18,6 @@ platforms:
   #   image: fedora:30
   - name: fedora31
     image: fedora:31
-  - name: ubuntu16
-    image: ubuntu:xenial
-  - name: ubuntu18
-    image: ubuntu:bionic
 provisioner:
   name: ansible
   config_options:
@@ -44,7 +28,7 @@ provisioner:
       # underscores when creating the group name.
       force_valid_group_names: always
 scenario:
-  name: default
+  name: redhat
 verifier:
   name: testinfra
   directory: ../tests
