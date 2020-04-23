@@ -28,7 +28,7 @@ provisioner:
       # underscores when creating the group name.
       force_valid_group_names: always
 scenario:
-  name: default
+  name: redhat
 verifier:
   name: testinfra
   directory: ../tests

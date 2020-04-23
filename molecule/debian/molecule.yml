@@ -32,7 +32,7 @@ provisioner:
       # underscores when creating the group name.
       force_valid_group_names: always
 scenario:
-  name: default
+  name: debian
 verifier:
   name: testinfra
   directory: ../tests
