@@ -1,6 +1,4 @@
 ---
-# vars file for Kali
-
 # The Xfce package names
 package_names:
   - kali-desktop-xfce
