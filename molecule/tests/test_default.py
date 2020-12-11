@@ -13,9 +13,12 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 
 @pytest.mark.parametrize("pkg", ["xfce4", "xfce4-goodies"])
-def test_debian_packages(host, pkg):
-    """Test that the appropriate packages were installed on Debian."""
-    if host.system_info.distribution == "debian":
+def test_debian_and_ubuntu_packages(host, pkg):
+    """Test that the appropriate packages were installed on Debian and Ubuntu."""
+    if (
+        host.system_info.distribution == "debian"
+        or host.system_info.distribution == "ubuntu"
+    ):
         assert host.package(pkg).is_installed
 
 
@@ -27,7 +30,7 @@ def test_kali_packages(host, pkg):
 
 
 @pytest.mark.parametrize("pkg", ["@xfce-desktop-environment"])
-def test_redhat_packages(host, pkg):
-    """Test that the appropriate packages were installed on RedHat."""
-    if host.system_info.distribution == "redhat":
+def test_fedora_packages(host, pkg):
+    """Test that the appropriate packages were installed on Fedora."""
+    if host.system_info.distribution == "fedora":
         assert host.package(pkg).is_installed
