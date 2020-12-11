@@ -15,7 +15,9 @@
     name:
       "{{ package_names }}"
 
-# Does this go here?  Can this be generalized?
+# TODO: Does this need to be generalized?  Should it be broken out
+# into a separate role?  See this issue:
+# https://github.com/cisagov/ansible-role-xfce/issues/7
 - name: Disable screen locking
   file:
     path: /etc/xdg/autostart/light-locker.desktop
