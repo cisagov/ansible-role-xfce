@@ -4,7 +4,6 @@
 import os
 
 # Third-Party Libraries
-import pytest
 import testinfra.utils.ansible_runner
 
 testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
@@ -12,27 +11,24 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-@pytest.mark.parametrize("pkg", ["xfce4", "xfce4-goodies"])
-def test_debian_and_ubuntu_packages(host, pkg):
-    """Test that the appropriate packages were installed on Debian and Ubuntu."""
+def test_packages(host):
+    """Test that the appropriate packages were installed."""
+    pkgs = None
     if (
         host.system_info.distribution == "debian"
         or host.system_info.distribution == "ubuntu"
     ):
-        assert host.package(pkg).is_installed
+        pkgs = ["xfce4", "xfce4-goodies"]
+    elif host.system_info.distribution == "kali":
+        pkgs = ["kali-desktop-xfce", "xfce4-goodies"]
+    elif host.system_info.distribution == "fedora":
+        # We can't check for the metapackage
+        # @xfce-desktop-environment, so we check for a key xfce
+        # package.
+        pkgs = ["xfce4-panel"]
+    else:
+        # This is an unknown OS, so force the test to fail
+        assert False
 
-
-@pytest.mark.parametrize("pkg", ["kali-desktop-xfce", "xfce4-goodies"])
-def test_kali_packages(host, pkg):
-    """Test that the appropriate packages were installed on Kali."""
-    if host.system_info.distribution == "kali":
-        assert host.package(pkg).is_installed
-
-
-# We can't check for the metapackage @xfce-desktop-environment, so we
-# check for a key xfce package.
-@pytest.mark.parametrize("pkg", ["xfce4-panel"])
-def test_fedora_packages(host, pkg):
-    """Test that the appropriate packages were installed on Fedora."""
-    if host.system_info.distribution == "fedora":
+    for pkg in pkgs:
         assert host.package(pkg).is_installed
