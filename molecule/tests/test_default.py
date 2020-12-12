@@ -29,7 +29,9 @@ def test_kali_packages(host, pkg):
         assert host.package(pkg).is_installed
 
 
-@pytest.mark.parametrize("pkg", ["@xfce-desktop-environment"])
+# We can't check for the metapackage @xfce-desktop-environment, so we
+# check for a key xfce package.
+@pytest.mark.parametrize("pkg", ["xfce4-panel"])
 def test_fedora_packages(host, pkg):
     """Test that the appropriate packages were installed on Fedora."""
     if host.system_info.distribution == "fedora":
