@@ -1,6 +1,4 @@
 ---
-# vars file for RedHat
-
 # The Xfce package names
 package_names:
   - '@xfce-desktop-environment'

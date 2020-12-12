@@ -1,16 +1,12 @@
 ---
-# tasks file for ansible-role-xfce
-
 - name: Load var file with package names based on the OS type
   include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
-        # Add regex_replace() filters to remove spaces and
-        # slashes. This allows the OS family/distribution for Kali,
-        # "Kali GNU/Linux", to be easily mapped to a vars file.
-        - "{{ ansible_distribution | regex_replace('[ /]', '_') }}.yml"
-        - "{{ ansible_os_family | regex_replace('[ /]', '_') }}.yml"
+        - "{{ ansible_distribution }}_{{ ansible_distribution_version }}.yml"
+        - "{{ ansible_distribution }}.yml"
+        - "{{ ansible_os_family }}.yml"
       paths:
         - "{{ role_path }}/vars"
 
@@ -19,7 +15,9 @@
     name:
       "{{ package_names }}"
 
-# Does this go here?  Can this be generalized?
+# TODO: Does this need to be generalized?  Should it be broken out
+# into a separate role?  See this issue:
+# https://github.com/cisagov/ansible-role-xfce/issues/7
 - name: Disable screen locking
   file:
     path: /etc/xdg/autostart/light-locker.desktop

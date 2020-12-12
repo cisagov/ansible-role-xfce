@@ -12,7 +12,27 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-@pytest.mark.parametrize("x", [True])
-def test_packages(host, x):
-    """Run a dummy test, just to show what one would look like."""
-    assert x
+@pytest.mark.parametrize("pkg", ["xfce4", "xfce4-goodies"])
+def test_debian_and_ubuntu_packages(host, pkg):
+    """Test that the appropriate packages were installed on Debian and Ubuntu."""
+    if (
+        host.system_info.distribution == "debian"
+        or host.system_info.distribution == "ubuntu"
+    ):
+        assert host.package(pkg).is_installed
+
+
+@pytest.mark.parametrize("pkg", ["kali-desktop-xfce", "xfce4-goodies"])
+def test_kali_packages(host, pkg):
+    """Test that the appropriate packages were installed on Kali."""
+    if host.system_info.distribution == "kali":
+        assert host.package(pkg).is_installed
+
+
+# We can't check for the metapackage @xfce-desktop-environment, so we
+# check for a key xfce package.
+@pytest.mark.parametrize("pkg", ["xfce4-panel"])
+def test_fedora_packages(host, pkg):
+    """Test that the appropriate packages were installed on Fedora."""
+    if host.system_info.distribution == "fedora":
+        assert host.package(pkg).is_installed

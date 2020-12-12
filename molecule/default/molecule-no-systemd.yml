@@ -16,6 +16,9 @@ lint: |
   ansible-lint
   flake8
 platforms:
+  # Amazon Linux does not appear to offer Xfce
+  # - name: amazonlinux2
+  #   image: amazonlinux:2
   - name: debian9
     image: debian:stretch-slim
     dockerfile: Dockerfile_debian_9.j2
@@ -25,6 +28,10 @@ platforms:
     image: debian:bullseye-slim
   - name: kali
     image: kalilinux/kali-rolling
+  - name: fedora32
+    image: fedora:32
+  - name: fedora33
+    image: fedora:33
   - name: ubuntu16
     image: ubuntu:xenial
   - name: ubuntu18
@@ -70,7 +77,7 @@ provisioner:
         # * https://github.com/ansible/ansible/blob/v2.10.1/lib/ansible/executor/interpreter_discovery.py
         ansible_python_interpreter: auto_legacy
 scenario:
-  name: debian
+  name: default
 verifier:
   name: testinfra
   directory: ../tests
