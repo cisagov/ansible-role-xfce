@@ -1,8 +1,8 @@
 ---
 # The Xfce package names
 package_names:
-  # This package is missing on Kali Linux.  See
+  # This package is missing on Debian Bullseye.  See
   # cisagov/ansible-role-xfce#9 for details.
   - dbus-x11
-  - kali-desktop-xfce
+  - xfce4
   - xfce4-goodies
