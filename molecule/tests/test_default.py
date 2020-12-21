@@ -16,11 +16,16 @@ def test_packages(host):
     pkgs = None
     if (
         host.system_info.distribution == "debian"
-        or host.system_info.distribution == "ubuntu"
-    ):
+        and host.system_info.distribution != "bullseye"
+    ) or host.system_info.distribution == "ubuntu":
         pkgs = ["xfce4", "xfce4-goodies"]
+    elif (
+        host.system_info.distribution == "debian"
+        and host.system_info.distribution == "bullseye"
+    ):
+        pkgs = ["dbus-x11", "xfce4", "xfce4-goodies"]
     elif host.system_info.distribution == "kali":
-        pkgs = ["kali-desktop-xfce", "xfce4-goodies"]
+        pkgs = ["dbus-x11", "kali-desktop-xfce", "xfce4-goodies"]
     elif host.system_info.distribution == "fedora":
         # We can't check for the metapackage
         # @xfce-desktop-environment, so we check for a key xfce
