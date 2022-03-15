@@ -19,12 +19,10 @@ platforms:
   # Amazon Linux does not appear to offer Xfce
   # - name: amazonlinux2
   #   image: amazonlinux:2
-  - name: fedora32
-    image: fedora:32
-  - name: fedora33
-    image: fedora:33
   - name: fedora34
     image: fedora:34
+  - name: fedora35
+    image: fedora:35
 provisioner:
   name: ansible
   inventory:
