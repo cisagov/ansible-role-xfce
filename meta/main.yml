@@ -1,8 +1,9 @@
 ---
+dependencies: []
 galaxy_info:
   author: Shane Frasier
-  description: Ansible role to install the Xfce desktop environment
   company: CISA Cyber Assessments
+  description: Ansible role to install the Xfce desktop environment
   galaxy_tags:
     - xfce
   license: CC0
@@ -29,7 +30,6 @@ galaxy_info:
         - bookworm
     - name: Fedora
       versions:
-        - "35"
         - "36"
         - "37"
     - name: Ubuntu
@@ -38,5 +38,3 @@ galaxy_info:
         - focal
         - jammy
   role_name: xfce
-
-dependencies: []
