@@ -16,10 +16,6 @@ lint: |
   ansible-lint
   flake8
 platforms:
-  - dockerfile: Dockerfile_debian_9.j2
-    image: debian:stretch-slim
-    name: debian9
-    platform: amd64
   - image: debian:buster-slim
     name: debian10
     platform: amd64
