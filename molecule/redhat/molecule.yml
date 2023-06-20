@@ -10,21 +10,16 @@ dependency:
   name: galaxy
 driver:
   name: docker
-lint: |
-  set -e
-  yamllint .
-  ansible-lint
-  flake8
 platforms:
   # Amazon Linux does not appear to offer Xfce
   # - image: amazonlinux:2023
   #   name: amazonlinux2023
   #   platform: amd64
-  - image: fedora:36
-    name: fedora36
-    platform: amd64
   - image: fedora:37
     name: fedora37
+    platform: amd64
+  - image: fedora:38
+    name: fedora38
     platform: amd64
 scenario:
   name: redhat

@@ -1,6 +1,6 @@
 ---
 - name: Load var file with package names based on the OS type
-  include_vars: "{{ lookup('first_found', params) }}"
+  ansible.builtin.include_vars: "{{ lookup('first_found', params) }}"
   vars:
     params:
       files:
@@ -11,7 +11,7 @@
         - "{{ role_path }}/vars"
 
 - name: Install Xfce desktop environment
-  package:
+  ansible.builtin.package:
     name:
       "{{ package_names }}"
 
@@ -19,6 +19,6 @@
 # into a separate role?  See this issue:
 # https://github.com/cisagov/ansible-role-xfce/issues/7
 - name: Disable screen locking
-  file:
+  ansible.builtin.file:
     path: /etc/xdg/autostart/light-locker.desktop
     state: absent
