@@ -12,8 +12,7 @@
 
 - name: Install Xfce desktop environment
   ansible.builtin.package:
-    name:
-      "{{ package_names }}"
+    name: "{{ package_names }}"
 
 # TODO: Does this need to be generalized?  Should it be broken out
 # into a separate role?  See this issue:

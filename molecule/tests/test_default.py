@@ -16,12 +16,12 @@ def test_packages(host):
     pkgs = None
     if (
         host.system_info.distribution == "debian"
-        and host.system_info.distribution != "bullseye"
+        and host.system_info.codename != "bullseye"
     ) or host.system_info.distribution == "ubuntu":
         pkgs = ["xfce4", "xfce4-goodies"]
     elif (
         host.system_info.distribution == "debian"
-        and host.system_info.distribution == "bullseye"
+        and host.system_info.codename == "bullseye"
     ):
         pkgs = ["dbus-x11", "xfce4", "xfce4-goodies"]
     elif host.system_info.distribution == "kali":
