@@ -1,7 +1,7 @@
 ---
 # The Xfce package names
 package_names:
-  # This package is missing on Debian Bullseye.  See
+  # This package is missing on Debian Bullseye and later.  See
   # cisagov/ansible-role-xfce#9 for details.
   - dbus-x11
   - xfce4
