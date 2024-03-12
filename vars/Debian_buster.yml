@@ -1,0 +1,5 @@
+---
+# The Xfce package names
+package_names:
+  - xfce4
+  - xfce4-goodies
