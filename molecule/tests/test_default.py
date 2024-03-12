@@ -17,7 +17,7 @@ def test_packages(host):
     pkgs = None
     if (
         distribution in ["debian"] and host.system_info.codename in ["buster"]
-    ) or host.system_info.distribution in ["ubuntu"]:
+    ) or distribution in ["ubuntu"]:
         pkgs = ["xfce4", "xfce4-goodies"]
     elif distribution in ["debian"]:
         pkgs = ["dbus-x11", "xfce4", "xfce4-goodies"]
