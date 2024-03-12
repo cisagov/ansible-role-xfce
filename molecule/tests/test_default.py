@@ -13,27 +13,24 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 
 def test_packages(host):
     """Test that the appropriate packages were installed."""
+    distribution = host.system_info.distribution
     pkgs = None
     if (
-        host.system_info.distribution == "debian"
-        and host.system_info.codename != "bullseye"
-    ) or host.system_info.distribution == "ubuntu":
+        distribution in ["debian"] and host.system_info.codename in ["buster"]
+    ) or host.system_info.distribution in ["ubuntu"]:
         pkgs = ["xfce4", "xfce4-goodies"]
-    elif (
-        host.system_info.distribution == "debian"
-        and host.system_info.codename == "bullseye"
-    ):
+    elif distribution in ["debian"]:
         pkgs = ["dbus-x11", "xfce4", "xfce4-goodies"]
-    elif host.system_info.distribution == "kali":
+    elif distribution == "kali":
         pkgs = ["dbus-x11", "kali-desktop-xfce", "xfce4-goodies"]
-    elif host.system_info.distribution == "fedora":
+    elif distribution in ["fedora"]:
         # We can't check for the metapackage
         # @xfce-desktop-environment, so we check for a key xfce
         # package.
         pkgs = ["xfce4-panel"]
     else:
         # This is an unknown OS, so force the test to fail
-        assert False
+        assert False, f"Unknown distribution {distribution}"
 
     for pkg in pkgs:
         assert host.package(pkg).is_installed
