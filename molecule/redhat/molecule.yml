@@ -1,28 +1,38 @@
 ---
-# This molecule configuration file is suitable for testing Ansible
-# roles that _do not_ require SystemD.  If your Ansible role _does_
-# require SystemD then you should use molecule-with-systemd.yml
-# instead.
-#
-# Note that the molecule configuration file that is symlinked to
-# molecule.yml is the one that will be used.
 dependency:
   name: galaxy
 driver:
   name: docker
 platforms:
-  # Amazon Linux does not appear to offer Xfce
-  # - image: amazonlinux:2023
-  #   name: amazonlinux2023
+  # Amazon Linux 2023 does not appear to offer Xfce
+  # - cgroupns_mode: host
+  #   command: /lib/systemd/systemd
+  #   image: docker.io/geerlingguy/docker-amazonlinux2023-ansible:latest
+  #   name: amazonlinux2023-systemd
   #   platform: amd64
-  - image: fedora:37
-    name: fedora37
+  #   pre_build_image: true
+  #   privileged: true
+  #   volumes:
+  #     - /sys/fs/cgroup:/sys/fs/cgroup:rw
+  - cgroupns_mode: host
+    command: /lib/systemd/systemd
+    image: docker.io/geerlingguy/docker-fedora38-ansible:latest
+    name: fedora38-systemd
     platform: amd64
-  - image: fedora:38
-    name: fedora38
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
+  - cgroupns_mode: host
+    command: /lib/systemd/systemd
+    image: docker.io/geerlingguy/docker-fedora39-ansible:latest
+    name: fedora39-systemd
     platform: amd64
+    pre_build_image: true
+    privileged: true
+    volumes:
+      - /sys/fs/cgroup:/sys/fs/cgroup:rw
 scenario:
   name: redhat
 verifier:
   name: testinfra
-  directory: ../tests
