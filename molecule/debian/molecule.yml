@@ -71,3 +71,4 @@ scenario:
   name: debian
 verifier:
   name: testinfra
+  directory: ../tests

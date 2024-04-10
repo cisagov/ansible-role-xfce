@@ -36,3 +36,4 @@ scenario:
   name: redhat
 verifier:
   name: testinfra
+  directory: ../tests
