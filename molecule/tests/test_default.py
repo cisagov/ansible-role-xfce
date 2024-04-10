@@ -21,7 +21,7 @@ def test_packages(host):
         pkgs = ["xfce4", "xfce4-goodies"]
     elif distribution in ["debian"]:
         pkgs = ["dbus-x11", "xfce4", "xfce4-goodies"]
-    elif distribution == "kali":
+    elif distribution in ["kali"]:
         pkgs = ["dbus-x11", "kali-desktop-xfce", "xfce4-goodies"]
     elif distribution in ["fedora"]:
         # We can't check for the metapackage
