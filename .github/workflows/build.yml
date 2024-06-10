@@ -193,8 +193,7 @@ jobs:
           - ubuntu-22-systemd
           - ubuntu-24-systemd
         scenario:
-          - debian
-          - redhat
+          - default
     steps:
       - id: harden-runner
         name: Harden the runner
