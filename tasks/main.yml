@@ -13,11 +13,3 @@
 - name: Install Xfce desktop environment
   ansible.builtin.package:
     name: "{{ package_names }}"
-
-# TODO: Does this need to be generalized?  Should it be broken out
-# into a separate role?  See this issue:
-# https://github.com/cisagov/ansible-role-xfce/issues/7
-- name: Disable screen locking
-  ansible.builtin.file:
-    path: /etc/xdg/autostart/light-locker.desktop
-    state: absent
