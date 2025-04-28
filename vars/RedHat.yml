@@ -1,4 +1,4 @@
 ---
 # The Xfce package names
 package_names:
-  - '@xfce-desktop-environment'
+  - "@xfce-desktop-environment"
