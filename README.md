@@ -1,6 +1,7 @@
 # ansible-role-xfce #
 
 [![GitHub Build Status](https://github.com/cisagov/ansible-role-xfce/workflows/build/badge.svg)](https://github.com/cisagov/ansible-role-xfce/actions)
+[![License](https://img.shields.io/github/license/cisagov/ansible-role-xfce)](https://spdx.org/licenses/)
 [![CodeQL](https://github.com/cisagov/ansible-role-xfce/workflows/CodeQL/badge.svg)](https://github.com/cisagov/ansible-role-xfce/actions/workflows/codeql-analysis.yml)
 
 An Ansible role for installing the Xfce desktop environment.
