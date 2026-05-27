@@ -30,7 +30,7 @@ def test_packages(host):
         pkgs = ["xfce4-panel"]
     else:
         # This is an unknown OS, so force the test to fail
-        assert False, f"Unknown distribution {distribution}"
+        raise ValueError(f"Unknown distribution {distribution}")
 
     for pkg in pkgs:
         assert host.package(pkg).is_installed
